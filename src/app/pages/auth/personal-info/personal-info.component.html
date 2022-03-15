@@ -1,0 +1,115 @@
+<div class="row pt-3">
+  <div class="col-md-6 offset-md-3 bg-white general-shadow p-4">
+    <form [formGroup]="InformationForm">
+
+      <div class="mb-3">
+        <h2>Personal Information</h2>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="firstName" class="form-label">First Name</label>
+          <input formControlName="first_name" type="name" class="form-control" id="firstName" placeholder="John">
+        </div>
+
+        <div class="col-md-6">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input formControlName="last_name" type="name" class="form-control" id="lastName" placeholder="Doe">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="dob" class="form-label">Date of Birth</label>
+          <input formControlName="dob" type="date" class="form-control" id="dob">
+        </div>
+
+        <div class="col-md-6">
+          <label for="userMail" class="form-label">Email</label>
+          <input formControlName="email" type="email" class="form-control" id="userMail" placeholder="test@mail.com">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Gender</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="gender" name="gender" value="Male"
+              id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="gender" name="gender" value="Female"
+              id="flexRadioDefault2">
+            <label class="form-check-label" for="flexRadioDefault2">Female</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="userAddress" class="form-label">Home Address</label>
+        <textarea formControlName="home_address" class="form-control" id="userAddress" rows="3"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Qualification</label>
+        <select formControlName="qualification" class="form-select" aria-label="Default select example">
+          <option selected>select Qualification</option>
+          <option *ngFor="let item of qualifications" value="{{item}}">{{item}}</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <h2>Employment History</h2>
+      </div>
+
+      <ng-container formArrayName="work_experience">
+        <div class="" *ngFor="let group of InformationForm.get('work_experience')['controls']; let i = index;"
+          [formGroupName]="i">
+          <div class="mb-3 col-12">
+            <div class="" *ngIf="i > 0">
+              <img (click)="removeWorkExperience()" class="pointer w-16" src="assets/icons/cancel.svg" alt="cancel-btn">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="title" class="form-label">Job Title</label>
+              <input type="text" formControlName="job_title" class="form-control" id="title" placeholder="Example Ltd">
+            </div>
+
+            <div class="col-md-6">
+              <label for="role" class="form-label">Job Role</label>
+              <input type="text" formControlName="role" class="form-control" id="role"
+                placeholder="Full Stack Developer">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="name" class="form-label">Company Name</label>
+              <input type="text" formControlName="company_name" class="form-control" id="name"
+                placeholder="Example Ltd">
+            </div>
+
+            <div class="col-md-6">
+              <label for="years" class="form-label">Years of Experience</label>
+              <input type="number" formControlName="years_experience" class="form-control" id="years" placeholder="2">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" formControlName="location" class="form-control" id="location" placeholder="Canada">
+          </div>
+        </div>
+      </ng-container>
+      <div class="mb-3">
+        <button class="btn btn-primary" (click)="addWorkExperience()">Add more +</button>
+      </div>
+
+
+      <button (click)="onSave()" type="submit" [disabled]="!InformationForm.valid" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>

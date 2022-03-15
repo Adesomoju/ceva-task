@@ -1,0 +1,15 @@
+<section class="bg-white">
+    <mat-dialog-content class="bg-white">
+        <div class="p-2 ">
+          <div class="text-center"> 
+              <h2 class="mb-4">{{data?.title}}</h2>
+              <p class="mb-5">{{data?.content}}</p>
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button (click)="modalResponse(1)" class="btn btn-secondary me-md-2" type="button">No, I don't</button>
+            <button (click)="modalResponse(2)" class="btn btn-primary" type="button">Yes, sure</button>
+          </div>
+        </div>
+    </mat-dialog-content>
+  </section>
+  
